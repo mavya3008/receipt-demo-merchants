@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("clawpilotTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <title>Photo credits | Receipt Demo</title>
+  <meta name="description" content="Creators, sources and licenses for product photographs.">
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--cp-bg); color: var(--cp-text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6; }
+    a { color: var(--cp-link); text-underline-offset: 4px; }
+    a:hover { color: var(--cp-accent-hover); }
+    a:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 4px; }
+    .skip { position: absolute; left: 16px; top: -80px; padding: 8px 16px;
+      background: var(--cp-surface); z-index: 1; }
+    .skip:focus { top: 8px; }
+    header { border-bottom: 1px solid var(--cp-border); background: var(--cp-bg-elevated); }
+    .wrap { max-width: 1120px; padding: 24px; margin: auto; }
+    .bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .brand { color: var(--cp-text); font-weight: 700; text-decoration: none; }
+    .eyebrow, .tag { color: var(--cp-accent); font-size: 0.8rem; font-weight: 700; }
+    .eyebrow { letter-spacing: 0.12em; text-transform: uppercase; }
+    .tag { display: inline-block; background: var(--cp-accent-soft);
+      padding: 4px 12px; border-radius: 0.625rem; }
+    nav { font-size: 0.9rem; margin-bottom: 32px; }
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.12; margin: 16px 0; }
+    h2 { line-height: 1.3; margin: 12px 0; }
+    .intro { max-width: 720px; color: var(--cp-text-muted); font-size: 1.1rem; }
+    .stats { display: flex; flex-wrap: wrap; gap: 24px; margin: 24px 0 32px;
+      padding: 16px 0; border-block: 1px solid var(--cp-border); color: var(--cp-text-muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px; }
+    .card { background: var(--cp-surface); border: 1px solid var(--cp-border);
+      border-radius: 16px; padding: 24px; box-shadow: 0 1px 2px var(--cp-highlight); }
+    .card p { color: var(--cp-text-muted); }
+    .card h2 { font-size: 1.3rem; }
+    .card h2 a { color: var(--cp-text); }
+    .code { font-family: Consolas, "Courier New", Courier, monospace; }
+    .price { color: var(--cp-text); font-size: 1.25rem; font-weight: 700; }
+    .muted { color: var(--cp-text-muted); font-size: 0.9rem; }
+    .detail { max-width: 800px; }
+    .product-photo { margin: 0 0 20px; }
+    .product-photo img { display: block; width: 100%; height: auto; aspect-ratio: 32 / 21;
+      object-fit: cover; border-radius: 0.625rem; background: var(--cp-surface-soft); }
+    .product-photo figcaption { color: var(--cp-text-soft); font-size: 0.75rem;
+      overflow-wrap: anywhere; margin-top: 8px; }
+    dl { display: grid; grid-template-columns: minmax(120px, 1fr) 2fr; gap: 0; }
+    dt, dd { margin: 0; padding: 12px 0; border-bottom: 1px solid var(--cp-border); overflow-wrap: anywhere; }
+    dt { color: var(--cp-text-muted); padding-right: 16px; }
+    .notice { border-left: 4px solid var(--cp-accent); padding: 12px 20px;
+      background: var(--cp-accent-soft); border-radius: 0.625rem; margin: 32px 0; }
+    footer { margin-top: 40px; border-top: 1px solid var(--cp-border); color: var(--cp-text-muted); font-size: 0.9rem; }
+    @media (max-width: 480px) { .wrap { padding: 16px; } .card { padding: 20px; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header><div class="wrap bar">
+    <a class="brand" href="./">Receipt Demo / Merchant storefronts</a>
+    <span class="tag">Fictional catalog - not a shop</span>
+  </div></header>
+  <main id="main" class="wrap">
+    <nav aria-label="Breadcrumb"><a href="./">All merchants</a></nav><h1>Photo credits</h1><p class="intro">Representative photographs are recorded by their sources as public domain or CC0 public-domain dedications. Source and creator records are retained for provenance. This is not a guarantee about trademark, privacy or other non-copyright rights.</p><section class="grid" aria-label="Photo attribution"><article class="card"><h2>Warehouse Mart / Morning Roast Coffee</h2><p class="code">Item 001001</p><p><a href="https://commons.wikimedia.org/wiki/File:Roasted_coffee_beans.jpg">Coffee bean</a> by MarkSweep / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Rolled Oats</h2><p class="code">Item 001002</p><p><a href="https://commons.wikimedia.org/wiki/File:Rolled_oats.jpg">Rolled oats</a> by en:user:Hankwang / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Olive Oil</h2><p class="code">Item 001003</p><p><a href="https://commons.wikimedia.org/wiki/File:Olive_Oil_(Unsplash).jpg">Olive oil</a> by Roberta Sorge robertina / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Greek Yogurt</h2><p class="code">Item 001004</p><p><a href="https://commons.wikimedia.org/wiki/File:Strained_yogurt_(20250302).jpg">Strained yogurt</a> by Fumikas Sagisavas / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Paper Towels</h2><p class="code">Item 001005</p><p><a href="https://commons.wikimedia.org/wiki/File:Reczniki_papierowe.jpg">Paper towel</a> by No machine-readable author provided. Julo assumed (based on copyright claims). / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Brown Rice</h2><p class="code">Item 001006</p><p><a href="https://commons.wikimedia.org/wiki/File:Tricolor_brown_rice.jpg">Brown rice</a> by Fumikas Sagisavas / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Almonds</h2><p class="code">Item 001007</p><p><a href="https://commons.wikimedia.org/wiki/File:Almonds02.jpg">Almond</a> by Danielle Keller (Danielle_dk) / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Frozen Berries</h2><p class="code">Item 001008</p><p><a href="https://commons.wikimedia.org/wiki/File:Blueberries_in_a_little_bowl.jpg">Blueberry</a> by Daderot / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Dish Soap</h2><p class="code">Item 001009</p><p><a href="https://commons.wikimedia.org/wiki/File:Diskmedel.JPG">Dishwashing liquid</a> by Dnor / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Whole Wheat Bread</h2><p class="code">Item 001010</p><p><a href="https://commons.wikimedia.org/wiki/File:Two_slices_of_Kingsmill_bread.jpg">Whole wheat bread</a> by Mx. Granger / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Cheddar Cheese</h2><p class="code">Item 001011</p><p><a href="https://commons.wikimedia.org/wiki/File:Cheese_46_bg_060106.jpg">Cheddar cheese</a> by PDphoto.org / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Sparkling Water</h2><p class="code">Item 001012</p><p><a href="https://commons.wikimedia.org/wiki/File:Blue_glass_with_carbonated_water.jpg">Carbonated water</a> by W.carter / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Laundry Detergent</h2><p class="code">Item 001013</p><p><a href="https://commons.wikimedia.org/wiki/File:Pralni_pra%C5%A1ek.JPG">Laundry detergent</a> by Uncy at Slovenian Wikipedia / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Peanut Butter</h2><p class="code">Item 001014</p><p><a href="https://commons.wikimedia.org/wiki/File:Six_different_types_of_peanut_butter_on_a_counter.jpg">Peanut butter</a> by Punker1999 / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Eggs</h2><p class="code">Item 001015</p><p><a href="https://commons.wikimedia.org/wiki/File:6-Pack-Chicken-Eggs.jpg">Egg as food</a> by Evan-Amos / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Wireless Headphones</h2><p class="code">Item 001016</p><p><a href="https://commons.wikimedia.org/wiki/File:Headphones_on_wood_in_black_and_white_(Unsplash).jpg">Headphones</a> by Corey Blaz blazphoto / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Bluetooth Speaker</h2><p class="code">Item 001017</p><p><a href="https://commons.wikimedia.org/wiki/File:JBL_Boombox_2_1v2.jpg">Bluetooth speaker</a> by Singlespeedfahrer / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Laptop</h2><p class="code">Item 001018</p><p><a href="https://commons.wikimedia.org/wiki/File:Samsung_QX-511_(2).JPG">Laptop</a> by Batorry / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / Computer Monitor</h2><p class="code">Item 001019</p><p><a href="https://commons.wikimedia.org/wiki/File:Computer_monitor_samsung.jpg">Computer monitor</a> by G4ming4lif3 / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Warehouse Mart / USB-C Charger</h2><p class="code">Item 001020</p><p><a href="https://commons.wikimedia.org/wiki/File:Baseus_CCCP20UE_20W_USB_charger-0.jpg">USB-C</a> by Imgrenb / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Breakfast Tea</h2><p class="code">Item 001001</p><p><a href="https://commons.wikimedia.org/wiki/File:Nice_Cup_of_Tea.jpg">Black tea</a> by Vanderdecken / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / White Rice</h2><p class="code">Item 002002</p><p><a href="https://commons.wikimedia.org/wiki/File:White_rice_on_a_brown_table.jpg">White rice</a> by ImageParty / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Tomato Sauce</h2><p class="code">Item 002003</p><p><a href="https://commons.wikimedia.org/wiki/File:Fresh_Tomato_Sauce_(Unsplash).jpg">Tomato sauce</a> by Dennis Klein klein2 / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Whole Milk</h2><p class="code">Item 002004</p><p><a href="https://commons.wikimedia.org/wiki/File:Milk_2.jpg">Milk</a> by Daria-Yakovleva / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Sandwich Bread</h2><p class="code">Item 002005</p><p><a href="https://commons.wikimedia.org/wiki/File:White_sandwich_bread.jpg">White bread</a> by Wiki Farazi / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Bananas</h2><p class="code">Item 002006</p><p><a href="https://commons.wikimedia.org/wiki/File:Banana_caturra.JPG">Banana</a> by Deyvid Aleksandr Raffo Setti e Eloy Olindo Setti / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Penne Pasta</h2><p class="code">Item 002007</p><p><a href="https://commons.wikimedia.org/wiki/File:Pennelisce_closeup.png">Penne</a> by Popo le Chien / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Potato Chips</h2><p class="code">Item 002008</p><p><a href="https://commons.wikimedia.org/wiki/File:Potato-Chips.jpg">Potato chip</a> by Evan-Amos / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Hand Soap</h2><p class="code">Item 002009</p><p><a href="https://commons.wikimedia.org/wiki/File:Bars_of_pure_Marseille_and_Aleppo_soap,_2024.jpg">Soap</a> by DimiTalen / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Orange Juice</h2><p class="code">Item 002010</p><p><a href="https://commons.wikimedia.org/wiki/File:Orangejuice.jpg">Orange juice</a> by rawpixel.com / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Canned Beans</h2><p class="code">Item 002011</p><p><a href="https://commons.wikimedia.org/wiki/File:BLACK_TURTLE_BEANS.jpg">Black turtle bean</a> by Ranjithkumar Murugesan / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Flour</h2><p class="code">Item 002012</p><p><a href="https://commons.wikimedia.org/wiki/File:Flour_01.jpg">Flour</a> by Shams948 / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Butter</h2><p class="code">Item 002013</p><p><a href="https://commons.wikimedia.org/wiki/File:Butter_and_Knive.jpg">Butter</a> by Julikalucky / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Frozen Peas</h2><p class="code">Item 002014</p><p><a href="https://commons.wikimedia.org/wiki/File:USDA_2026_Peas_frozen.png">Pea</a> by U.S. Department of Health and Human Services / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Everyday Market / Apples</h2><p class="code">Item 002015</p><p><a href="https://commons.wikimedia.org/wiki/File:Multicoloredapples001.jpg">Apple</a> by Rollcloud / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Herbal Mint Tea</h2><p class="code">Item 001001</p><p><a href="https://commons.wikimedia.org/wiki/File:Peppermint_Tea_in_a_pot_-_Abyssinia.jpg">Mint tea</a> by Andy Li / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Organic Spinach</h2><p class="code">Item 003002</p><p><a href="https://commons.wikimedia.org/wiki/File:Spinach_Plant_Nourishment_Meal_Fresh_Healthy_Bio.jpg">Spinach</a> by ThiloBecker / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Sourdough Bread</h2><p class="code">Item 003003</p><p><a href="https://commons.wikimedia.org/wiki/File:Sourdough_bread_loaf.jpg">Sourdough</a> by Nhall0901 / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Oat Milk</h2><p class="code">Item 003004</p><p><a href="https://commons.wikimedia.org/wiki/File:Oatmilk_1.jpg">Oat milk</a> by Mx. Granger / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Hummus</h2><p class="code">Item 003005</p><p><a href="https://commons.wikimedia.org/wiki/File:Houmous.jpg">Hummus</a> by Popo le Chien / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Avocados</h2><p class="code">Item 003006</p><p><a href="https://commons.wikimedia.org/wiki/File:Avocado_Fruit_Harvested_From_Backyard.jpg">Avocado</a> by GeekCPALawyer / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Quinoa</h2><p class="code">Item 003007</p><p><a href="https://commons.wikimedia.org/wiki/File:Bolivian_quinoa_(1).jpg">Quinoa</a> by Fumikas Sagisavas / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Dark Chocolate</h2><p class="code">Item 003008</p><p><a href="https://commons.wikimedia.org/wiki/File:Green_and_Black%27s_dark_chocolate_bar_2.jpg">Dark chocolate</a> by Mx. Granger / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Almond Beverage</h2><p class="code">Item 003009</p><p><a href="https://commons.wikimedia.org/wiki/File:Almond_effect_plant_protein_drink.jpg">Almond milk</a> by Fumikas Sagisavas / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Tofu</h2><p class="code">Item 003010</p><p><a href="https://commons.wikimedia.org/wiki/File:Home-madeTofu.JPG">Tofu</a> by Grill-Britt / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Cherry Tomatoes</h2><p class="code">Item 003011</p><p><a href="https://commons.wikimedia.org/wiki/File:Cherry-Tomatoes-in-Pack.jpg">Cherry tomato</a> by Evan-Amos / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Granola</h2><p class="code">Item 003012</p><p><a href="https://commons.wikimedia.org/wiki/File:Granola_Honey_and_Vanilla_Top.jpg">Granola</a> by Bajinra / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Lentils</h2><p class="code">Item 003013</p><p><a href="https://commons.wikimedia.org/wiki/File:Red_lentils_(1).jpg">Lentil</a> by Fumikas Sagisavas / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Blueberries</h2><p class="code">Item 003014</p><p><a href="https://commons.wikimedia.org/wiki/File:Blueberries_in_a_little_bowl.jpg">Blueberry</a> by Daderot / <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article><article class="card"><h2>Fresh Basket / Carrots</h2><p class="code">Item 003015</p><p><a href="https://commons.wikimedia.org/wiki/File:Vegetable-Carrot-Bundle-wStalks.jpg">Carrot</a> by Evan-Amos / <a href="https://commons.wikimedia.org/wiki/Commons:Public_domain">Public domain</a>.</p><p>Resized by the source provider; cropped for display. No endorsement by the photographer is implied.</p></article></section>
+    <aside class="notice" aria-label="Demo data notice">
+      Fictional merchants and products for receipt enrichment learning only.
+      Prices are illustrative catalog prices, not historical receipt prices.
+      Demo UPCs are synthetic, not GS1 assignments. No checkout or real purchases.
+    </aside>
+  </main>
+  <footer><div class="wrap">Built for evidence-based enrichment.
+    Match merchant + exact item code. Never guess a missing product.
+    <a href="./photo-credits.html">Photo credits</a></div></footer>
+  
+</body>
+</html>
