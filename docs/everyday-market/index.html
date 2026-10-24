@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("clawpilotTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <title>Everyday Market | Fictional storefront</title>
+  <meta name="description" content="Browse 15 fictional Everyday Market products.">
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--cp-bg); color: var(--cp-text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6; }
+    a { color: var(--cp-link); text-underline-offset: 4px; }
+    a:hover { color: var(--cp-accent-hover); }
+    a:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 4px; }
+    .skip { position: absolute; left: 16px; top: -80px; padding: 8px 16px;
+      background: var(--cp-surface); z-index: 1; }
+    .skip:focus { top: 8px; }
+    header { border-bottom: 1px solid var(--cp-border); background: var(--cp-bg-elevated); }
+    .wrap { max-width: 1120px; padding: 24px; margin: auto; }
+    .bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .brand { color: var(--cp-text); font-weight: 700; text-decoration: none; }
+    .eyebrow, .tag { color: var(--cp-accent); font-size: 0.8rem; font-weight: 700; }
+    .eyebrow { letter-spacing: 0.12em; text-transform: uppercase; }
+    .tag { display: inline-block; background: var(--cp-accent-soft);
+      padding: 4px 12px; border-radius: 0.625rem; }
+    nav { font-size: 0.9rem; margin-bottom: 32px; }
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.12; margin: 16px 0; }
+    h2 { line-height: 1.3; margin: 12px 0; }
+    .intro { max-width: 720px; color: var(--cp-text-muted); font-size: 1.1rem; }
+    .stats { display: flex; flex-wrap: wrap; gap: 24px; margin: 24px 0 32px;
+      padding: 16px 0; border-block: 1px solid var(--cp-border); color: var(--cp-text-muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px; }
+    .card { background: var(--cp-surface); border: 1px solid var(--cp-border);
+      border-radius: 16px; padding: 24px; box-shadow: 0 1px 2px var(--cp-highlight); }
+    .card p { color: var(--cp-text-muted); }
+    .card h2 { font-size: 1.3rem; }
+    .card h2 a { color: var(--cp-text); }
+    .code { font-family: Consolas, "Courier New", Courier, monospace; }
+    .price { color: var(--cp-text); font-size: 1.25rem; font-weight: 700; }
+    .muted { color: var(--cp-text-muted); font-size: 0.9rem; }
+    .detail { max-width: 800px; }
+    .product-photo { margin: 0 0 20px; }
+    .product-photo img { display: block; width: 100%; height: auto; aspect-ratio: 32 / 21;
+      object-fit: cover; border-radius: 0.625rem; background: var(--cp-surface-soft); }
+    .product-photo figcaption { color: var(--cp-text-soft); font-size: 0.75rem;
+      overflow-wrap: anywhere; margin-top: 8px; }
+    dl { display: grid; grid-template-columns: minmax(120px, 1fr) 2fr; gap: 0; }
+    dt, dd { margin: 0; padding: 12px 0; border-bottom: 1px solid var(--cp-border); overflow-wrap: anywhere; }
+    dt { color: var(--cp-text-muted); padding-right: 16px; }
+    .notice { border-left: 4px solid var(--cp-accent); padding: 12px 20px;
+      background: var(--cp-accent-soft); border-radius: 0.625rem; margin: 32px 0; }
+    footer { margin-top: 40px; border-top: 1px solid var(--cp-border); color: var(--cp-text-muted); font-size: 0.9rem; }
+    @media (max-width: 480px) { .wrap { padding: 16px; } .card { padding: 20px; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header><div class="wrap bar">
+    <a class="brand" href="../">Receipt Demo / Merchant storefronts</a>
+    <span class="tag">Fictional catalog - not a shop</span>
+  </div></header>
+  <main id="main" class="wrap">
+    <nav aria-label="Breadcrumb"><a href="../">All merchants</a></nav><p class="eyebrow">Independent demo storefront / everyday-market</p><h1>Everyday Market</h1><p class="intro">Everyday essentials, clearly described. Use the exact item code to find the product behind a receipt abbreviation.</p><div class="stats"><span>15 products</span><span>USD catalog prices</span><span>Static product evidence</span></div><section class="grid" aria-label="Products"><article class="card"><figure class="product-photo"><img src="../assets/photos/9feda3747e4bbb40b825.jpg" alt="Black tea - representative photo for Breakfast Tea" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Beverages</span><h2><a href="products/001001.html">Breakfast Tea</a></h2><p>Black tea bags with a full-bodied breakfast blend.</p><p class="code">Item 001001</p><p>40 bags / <span class="price">USD 5.00</span></p><a href="products/001001.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/f19573c84a779a20b8bd.jpg" alt="White rice - representative photo for White Rice" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Pantry</span><h2><a href="products/002002.html">White Rice</a></h2><p>Long-grain white rice.</p><p class="code">Item 002002</p><p>2 lb / <span class="price">USD 4.00</span></p><a href="products/002002.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/743165cd4163eb040723.jpg" alt="Tomato sauce - representative photo for Tomato Sauce" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Pantry</span><h2><a href="products/002003.html">Tomato Sauce</a></h2><p>Tomato pasta sauce with basil.</p><p class="code">Item 002003</p><p>24 oz / <span class="price">USD 3.00</span></p><a href="products/002003.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/0e094d2c071a03e8390a.jpg" alt="Milk - representative photo for Whole Milk" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Dairy</span><h2><a href="products/002004.html">Whole Milk</a></h2><p>Pasteurized whole milk.</p><p class="code">Item 002004</p><p>1 gal / <span class="price">USD 4.00</span></p><a href="products/002004.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/ac6a876fd218ec451780.jpg" alt="White bread - representative photo for Sandwich Bread" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Bakery</span><h2><a href="products/002005.html">Sandwich Bread</a></h2><p>Soft sliced white sandwich bread.</p><p class="code">Item 002005</p><p>1 loaf / <span class="price">USD 3.00</span></p><a href="products/002005.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/1385c564aeb435e2d6bc.jpg" alt="Banana - representative photo for Bananas" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Produce</span><h2><a href="products/002006.html">Bananas</a></h2><p>Fresh yellow bananas sold as a fixed-price demo bunch.</p><p class="code">Item 002006</p><p>1 bunch / <span class="price">USD 2.00</span></p><a href="products/002006.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/28cfb226823ecaf8c918.png" alt="Penne - representative photo for Penne Pasta" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Pantry</span><h2><a href="products/002007.html">Penne Pasta</a></h2><p>Durum wheat penne pasta.</p><p class="code">Item 002007</p><p>16 oz / <span class="price">USD 2.00</span></p><a href="products/002007.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/059935ac083b196dc74d.jpg" alt="Potato chip - representative photo for Potato Chips" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Snacks</span><h2><a href="products/002008.html">Potato Chips</a></h2><p>Lightly salted crispy potato chips.</p><p class="code">Item 002008</p><p>8 oz / <span class="price">USD 4.00</span></p><a href="products/002008.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/d78e73deee30910c2bfe.jpg" alt="Soap - representative photo for Hand Soap" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Household</span><h2><a href="products/002009.html">Hand Soap</a></h2><p>Unscented liquid hand soap.</p><p class="code">Item 002009</p><p>12 fl oz / <span class="price">USD 3.00</span></p><a href="products/002009.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/f8361a567bb9cf65db80.jpg" alt="Orange juice - representative photo for Orange Juice" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Beverages</span><h2><a href="products/002010.html">Orange Juice</a></h2><p>Orange juice without pulp.</p><p class="code">Item 002010</p><p>52 fl oz / <span class="price">USD 5.00</span></p><a href="products/002010.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/1b91bf41a1529571f2e0.jpg" alt="Black turtle bean - representative photo for Canned Beans" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Pantry</span><h2><a href="products/002011.html">Canned Beans</a></h2><p>Ready-to-use canned black beans.</p><p class="code">Item 002011</p><p>15 oz / <span class="price">USD 2.00</span></p><a href="products/002011.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/97a0288630f05652d64e.jpg" alt="Flour - representative photo for Flour" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Pantry</span><h2><a href="products/002012.html">Flour</a></h2><p>All-purpose wheat flour for baking.</p><p class="code">Item 002012</p><p>5 lb / <span class="price">USD 4.00</span></p><a href="products/002012.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/6b03ba615a4c9647500b.jpg" alt="Butter - representative photo for Butter" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Dairy</span><h2><a href="products/002013.html">Butter</a></h2><p>Unsalted dairy butter.</p><p class="code">Item 002013</p><p>1 lb / <span class="price">USD 5.00</span></p><a href="products/002013.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/2ea62a8db7b24b0e4de1.png" alt="Pea - representative photo for Frozen Peas" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Frozen</span><h2><a href="products/002014.html">Frozen Peas</a></h2><p>Frozen green peas.</p><p class="code">Item 002014</p><p>16 oz / <span class="price">USD 3.00</span></p><a href="products/002014.html">View product evidence</a></article><article class="card"><figure class="product-photo"><img src="../assets/photos/a58a2a1149ed1c079665.jpg" alt="Apple - representative photo for Apples" width="640" height="420" loading="lazy" decoding="async"><figcaption>Representative product photo; not an exact brand or pack match.</figcaption></figure><span class="tag">Produce</span><h2><a href="products/002015.html">Apples</a></h2><p>Crisp red apples in a fixed-price bag.</p><p class="code">Item 002015</p><p>3 lb / <span class="price">USD 5.00</span></p><a href="products/002015.html">View product evidence</a></article></section>
+    <aside class="notice" aria-label="Demo data notice">
+      Fictional merchants and products for receipt enrichment learning only.
+      Prices are illustrative catalog prices, not historical receipt prices.
+      Demo UPCs are synthetic, not GS1 assignments. No checkout or real purchases.
+    </aside>
+  </main>
+  <footer><div class="wrap">Built for evidence-based enrichment.
+    Match merchant + exact item code. Never guess a missing product.
+    <a href="../photo-credits.html">Photo credits</a></div></footer>
+  
+</body>
+</html>
